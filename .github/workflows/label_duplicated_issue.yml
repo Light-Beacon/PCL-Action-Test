@@ -35,4 +35,4 @@ jobs:
           -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
           -H "X-GitHub-Api-Version: 2022-11-28" \
           ${{github.event.issue.url}}/comments \
-          -d '{"body":"与 #${{env.duplicate_issue_number}}" 重复"}'
+          -d '{"body":"与 #${{env.duplicate_issue_number}} 重复"}'
