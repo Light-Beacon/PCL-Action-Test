@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Label duplicate issue
-      - run: |
+        run: |
           curl -L \
           -X POST \
           -H "Accept: application/vnd.github+json" \
@@ -21,14 +21,14 @@ jobs:
           ${{github.event.issue.url}}/labels \
           --data '{"labels":["重复"]}'
       - name: Get duplicate issue number
-      - run: |
+        run: |
           duplicate_issue_number = curl ${{github.event.issue.html_url}} | 
           grep react-app.embeddedData | sed -e 's/<script[^>]*>//' | 
           sed 's/<\/script>//' |
           jq '.payload.preloadedQueries[0].result.data.repository.issue.duplicateOf.number'
           echo "duplicate_issue_number=$duplicate_issue_number" >> $GITHUB_ENV
       - name: Add comment to issue
-      - run: |
+        run: |
           curl -L \
           -X POST \
           -H "Accept: application/vnd.github+json" \
