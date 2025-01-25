@@ -22,11 +22,11 @@ jobs:
           --data '{"labels":["重复"]}'
       - name: Get duplicate issue number
         run: |
-          duplicate_issue_number = curl ${{github.event.issue.html_url}} | 
+          duplicate_issue_number=$(curl ${{github.event.issue.html_url}} | 
           grep react-app.embeddedData | sed -e 's/<script[^>]*>//' | 
           sed 's/<\/script>//' |
           jq '.payload.preloadedQueries[0].result.data.repository.issue.duplicateOf.number'
-          echo "duplicate_issue_number=$duplicate_issue_number" >> $GITHUB_ENV
+          echo "duplicate_issue_number=$duplicate_issue_number" >> $GITHUB_ENV)
       - name: Add comment to issue
         run: |
           curl -L \
