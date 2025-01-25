@@ -3,6 +3,9 @@ on:
   issues:
     types: [closed]
 
+permissions:
+  issues: write
+
 jobs:
   label_duplicate_issue:
     if: github.event.issue.state_reason == 'duplicate'
